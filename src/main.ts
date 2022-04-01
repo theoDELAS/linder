@@ -9,8 +9,8 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
 
   const config = new DocumentBuilder()
-    .setTitle('API')
-    .setDescription('API')
+    .setTitle('Linder')
+    .setDescription('Linder documentation')
     .setVersion('1.0')
     .addTag('api')
     .build();
