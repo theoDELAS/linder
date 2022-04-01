@@ -1,12 +1,14 @@
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Connection } from 'typeorm';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Enterprise } from './enterprise/entities/enterprise.entity';
-import { EnterpriseController } from './enterprise/enterprise.controller';
-import { EnterpriseService } from './enterprise/enterprise.service';
 import { EnterpriseModule } from './enterprise/enterprise.module';
+import { PingController } from './ping/ping.controller';
+import { Candidate } from './candidate/entities/candidate.entity';
+import { Tag } from './candidate/entities/tag.entity';
+import { CandidateModule } from './candidate/candidate.module';
+import { CandidateController } from './candidate/candidate.controller';
+import { CandidateService } from './candidate/candidate.service';
 
 @Module({
   imports: [
@@ -14,16 +16,17 @@ import { EnterpriseModule } from './enterprise/enterprise.module';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: '',
-      password: '',
+      username: 'notitou',
+      password: 'new',
       database: 'linder',
-      entities: [Enterprise],
+      entities: [Enterprise, Candidate, Tag],
       synchronize: true,
     }),
     EnterpriseModule,
+    CandidateModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [PingController, CandidateController],
+  providers: [CandidateService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}
