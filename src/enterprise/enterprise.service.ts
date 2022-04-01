@@ -29,7 +29,7 @@ export class EnterpriseService {
     return this.enterprisesRepository.find();
   }
 
-  findOne(id: any): Promise<Enterprise> {
+  findOne(id: string): Promise<Enterprise> {
     return this.enterprisesRepository.findOne(id);
   }
 
