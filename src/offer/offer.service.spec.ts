@@ -9,10 +9,11 @@ describe('OfferService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [OfferService],
+      providers: [OfferService, EnterpriseService],
     }).compile();
 
     offerService = module.get<OfferService>(OfferService);
+    enterpriseService = module.get<EnterpriseService>(EnterpriseService);
   });
 
   it('Create Offer OK ! Should return CreateOfferDto object', () => {
