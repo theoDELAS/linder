@@ -46,4 +46,8 @@ export class EnterpriseService {
   remove(id: string) {
     return `This action removes a #${id} enterprise`;
   }
+
+  cleanAll() {
+    // return this.enterprisesRepository.query({})
+  }
 }

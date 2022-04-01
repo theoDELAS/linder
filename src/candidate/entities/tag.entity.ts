@@ -9,6 +9,8 @@ export class Tag {
   @Column()
   name: string;
 
-  @ManyToMany(() => Candidate, (candidate) => candidate.tags)
+  @ManyToMany(() => Candidate, (candidate) => candidate.tags, {
+    onDelete: 'CASCADE',
+  })
   candidates: Candidate[];
 }

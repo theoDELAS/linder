@@ -14,8 +14,8 @@ export const startApp = async (): Promise<INestApplication> => {
   return app;
 };
 
-export const generateRandomNumber = () => {
-  return Math.random() * (1000 - 1) + 1;
+export const generateRandomNumber = (max) => {
+  return Math.floor(Math.random() * max);
 };
 
 export interface ApiResponse<T> {

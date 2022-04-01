@@ -27,9 +27,7 @@ export class Candidate {
   @Column()
   description: string;
 
-  @ManyToMany(() => Tag, (tag) => tag.candidates, {
-    cascade: true,
-  })
+  @ManyToMany(() => Tag, (tag) => tag.candidates, { onDelete: 'CASCADE' })
   @JoinTable()
   tags: Tag[];
 

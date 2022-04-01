@@ -1,5 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
+import { getConnection } from 'typeorm';
 import { CreateEnterpriseDto } from '../src/enterprise/dto/create-enterprise.dto';
 import { generateRandomNumber, startApp } from './test.utils';
 
@@ -8,12 +9,18 @@ describe('AppController (e2e)', () => {
 
   beforeAll(async () => {
     app = await startApp();
+    const entities = getConnection().entityMetadatas;
+
+    for (const entity of entities) {
+      const repository = getConnection().getRepository(entity.name);
+      await repository.clear();
+    }
   });
 
   describe('[POST] when creating a enterprise', () => {
     const exempleEnterprise = {
       name: 'Name',
-      siren: 765427,
+      siren: generateRandomNumber(999999999),
       description: 'dexcription',
       logoUrl: 'urllogo',
     } as CreateEnterpriseDto;
