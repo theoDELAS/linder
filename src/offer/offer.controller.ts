@@ -10,8 +10,10 @@ import {
 import { OfferService } from './offer.service';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('enterprise')
+@ApiTags('offer')
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
 
