@@ -22,8 +22,8 @@ import { EnterpriseModule } from './enterprise/enterprise.module';
     }),
     EnterpriseModule,
   ],
-  controllers: [AppController, EnterpriseController],
-  providers: [AppService, EnterpriseService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}

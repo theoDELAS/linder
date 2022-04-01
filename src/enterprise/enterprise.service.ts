@@ -21,7 +21,7 @@ export class EnterpriseService {
     };
     this.enterprisesRepository.save(enterprise);
 
-    return { id: enterprise };
+    return enterprise;
   }
 
   findAll(): Promise<Enterprise[]> {
