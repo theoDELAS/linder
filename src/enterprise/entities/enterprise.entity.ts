@@ -1,9 +1,11 @@
+import { Offer } from 'src/offer/entities/offer.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -24,6 +26,9 @@ export class Enterprise {
 
   @Column()
   logoUrl: string;
+
+  @OneToMany(() => Offer, (offer) => offer.enterprise)
+  offers: Offer[];
 
   @CreateDateColumn()
   createdAt: Date;
