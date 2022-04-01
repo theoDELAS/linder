@@ -12,8 +12,10 @@ import {
 import { EnterpriseService } from './enterprise.service';
 import { CreateEnterpriseDto } from './dto/create-enterprise.dto';
 import { UpdateEnterpriseDto } from './dto/update-enterprise.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('enterprise')
+@ApiTags('enterprise')
 export class EnterpriseController {
   constructor(private readonly enterpriseService: EnterpriseService) {}
 
