@@ -3,14 +3,15 @@ import { AppService } from './app.service';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Enterprise } from './enterprise/entities/enterprise.entity';
-import { EnterpriseController } from './enterprise/enterprise.controller';
-import { EnterpriseService } from './enterprise/enterprise.service';
 import { EnterpriseModule } from './enterprise/enterprise.module';
 import { Offer } from './offer/entities/offer.entity';
 import { OfferModule } from './offer/offer.module';
 import { Connection } from 'typeorm';
 import { OfferController } from './offer/offer.controller';
 import { OfferService } from './offer/offer.service';
+import { PingController } from './ping/ping.controller';
+import { EnterpriseController } from './enterprise/enterprise.controller';
+import { EnterpriseService } from './enterprise/enterprise.service';
 
 @Module({
   imports: [
@@ -27,7 +28,12 @@ import { OfferService } from './offer/offer.service';
     EnterpriseModule,
     OfferModule,
   ],
-  controllers: [AppController, EnterpriseController, OfferController],
+  controllers: [
+    AppController,
+    EnterpriseController,
+    OfferController,
+    PingController,
+  ],
   providers: [AppService, EnterpriseService, OfferService],
 })
 export class AppModule {
