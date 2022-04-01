@@ -12,6 +12,11 @@ import { OfferService } from './offer/offer.service';
 import { PingController } from './ping/ping.controller';
 import { EnterpriseController } from './enterprise/enterprise.controller';
 import { EnterpriseService } from './enterprise/enterprise.service';
+import { CandidateService } from './candidate/candidate.service';
+import { CandidateController } from './candidate/candidate.controller';
+import { Candidate } from './candidate/entities/candidate.entity';
+import { Tag } from './candidate/entities/tag.entity';
+import { CandidateModule } from './candidate/candidate.module';
 
 @Module({
   imports: [
@@ -22,19 +27,21 @@ import { EnterpriseService } from './enterprise/enterprise.service';
       username: 'linder',
       password: 'linder',
       database: 'linder',
-      entities: [Enterprise, Offer],
+      entities: [Enterprise, Offer, Candidate, Tag],
       synchronize: true,
     }),
     EnterpriseModule,
     OfferModule,
+    CandidateModule,
   ],
   controllers: [
     AppController,
     EnterpriseController,
     OfferController,
     PingController,
+    CandidateController,
   ],
-  providers: [AppService, EnterpriseService, OfferService],
+  providers: [AppService, EnterpriseService, OfferService, CandidateService],
 })
 export class AppModule {
   constructor(private connection: Connection) {}
