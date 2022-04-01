@@ -4,9 +4,8 @@ import { Connection } from 'typeorm';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Enterprise } from './enterprise/entities/enterprise.entity';
-import { EnterpriseController } from './enterprise/enterprise.controller';
-import { EnterpriseService } from './enterprise/enterprise.service';
 import { EnterpriseModule } from './enterprise/enterprise.module';
+import { PingController } from './ping/ping.controller';
 
 @Module({
   imports: [
@@ -22,8 +21,8 @@ import { EnterpriseModule } from './enterprise/enterprise.module';
     }),
     EnterpriseModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [PingController],
+  providers: [],
 })
 export class AppModule {
   constructor(private connection: Connection) {}
