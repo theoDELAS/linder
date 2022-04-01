@@ -3,8 +3,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Column,
+  Entity,
 } from 'typeorm';
 
+@Entity()
 export class Offer {
   @PrimaryGeneratedColumn()
   id: string;
@@ -12,8 +14,8 @@ export class Offer {
   @Column({ length: 280 })
   description: string;
 
-  @Column('array')
-  keyWord: Array<string>;
+  @Column('text', { array: true })
+  keyWord: string[];
 
   @Column('int')
   salary: number;

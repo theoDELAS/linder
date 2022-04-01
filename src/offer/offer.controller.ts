@@ -15,14 +15,14 @@ import { UpdateOfferDto } from './dto/update-offer.dto';
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
 
+  @Get('/offer/all')
+  findAll() {
+    return this.offerService.findAll();
+  }
+
   @Post('/offer')
   create(@Body() createOfferDto: CreateOfferDto) {
     return this.offerService.create(createOfferDto);
-  }
-
-  @Get('/offer')
-  findAll() {
-    return this.offerService.findAll();
   }
 
   @Get('/offer/:id')
