@@ -1,9 +1,16 @@
 import { INestApplication } from '@nestjs/common';
+import { startApp } from './test.utils';
 import * as request from 'supertest';
 import { CreateEnterpriseDto } from '../src/enterprise/dto/create-enterprise.dto';
-import { generateRandomNumber, startApp } from './test.utils';
 
-describe('AppController (e2e)', () => {
+const exempleEnterprise = {
+  name: 'Name',
+  siren: 998877665,
+  description: 'dexcription',
+  logoUrl: 'urllogo',
+} as CreateEnterpriseDto;
+
+describe('/enterprise endpoint', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -11,14 +18,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('[POST] when creating a enterprise', () => {
-    const exempleEnterprise = {
-      name: 'Name',
-      siren: 765427,
-      description: 'dexcription',
-      logoUrl: 'urllogo',
-    } as CreateEnterpriseDto;
-
-    it('should return the correct', async () => {
+    it('should return the correct id', async () => {
       const { body } = await request(app.getHttpServer())
         .post('/api/enterprise')
         .send()

@@ -4,6 +4,7 @@ import { UpdateEnterpriseDto } from './dto/update-enterprise.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Enterprise } from './entities/enterprise.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class EnterpriseService {
@@ -14,6 +15,7 @@ export class EnterpriseService {
 
   async create(createEnterpriseDto: CreateEnterpriseDto) {
     const enterprise = {
+      id: uuidv4(),
       name: createEnterpriseDto.name,
       siren: createEnterpriseDto.siren,
       description: createEnterpriseDto.description,
@@ -22,7 +24,7 @@ export class EnterpriseService {
 
     this.enterprisesRepository.save(enterprise);
 
-    return enterprise;
+    return { id: enterprise.id };
   }
 
   findAll(): Promise<Enterprise[]> {

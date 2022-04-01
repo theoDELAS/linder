@@ -8,7 +8,7 @@ import {
 
 @Entity()
 export class Enterprise {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
