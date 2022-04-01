@@ -30,7 +30,7 @@ export class EnterpriseService {
   }
 
   findOne(id: string): Promise<Enterprise> {
-    return this.enterprisesRepository.findOne(id);
+    return this.enterprisesRepository.findOne(+id);
   }
 
   findBy(sirenNumber: number): Promise<Enterprise[]> {
