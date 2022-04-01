@@ -12,7 +12,7 @@ export class OfferService {
     private OfferRepository: Repository<Offer>,
   ) {}
   create(createOfferDto: CreateOfferDto) {
-    if (createOfferDto.description.length < 280) {
+    if (createOfferDto.description.length <= 280) {
       const offer = {
         description: createOfferDto.description,
         keyWord: createOfferDto.keyWord,
