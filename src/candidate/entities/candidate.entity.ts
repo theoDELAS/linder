@@ -13,7 +13,7 @@ export class Candidate {
   id: string;
 
   @Column()
-  url: string;
+  profilePicUrl: string;
 
   @Column()
   firstName: string;

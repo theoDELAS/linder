@@ -14,7 +14,7 @@ export class CandidateService {
 
   create(createCandidateDto: CreateCandidateDto) {
     const candidate = {
-      url: createCandidateDto.url,
+      profilePicUrl: createCandidateDto.profilePicUrl,
       firstName: createCandidateDto.firstName,
       lastName: createCandidateDto.lastName,
       email: createCandidateDto.email,

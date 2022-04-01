@@ -2,8 +2,8 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Tag } from '../entities/tag.entity';
 
 export class CreateCandidateDto {
-  @ApiProperty({ type: String, description: 'url' })
-  url: string;
+  @ApiProperty({ type: String, description: 'profilePicUrl' })
+  profilePicUrl: string;
   @ApiProperty({ type: String, description: 'firstName' })
   firstName: string;
   @ApiProperty({ type: String, description: 'lastName' })
