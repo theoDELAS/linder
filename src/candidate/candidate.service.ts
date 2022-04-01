@@ -4,7 +4,6 @@ import { UpdateCandidateDto } from './dto/update-candidate.dto';
 import { Candidate } from './entities/candidate.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ApiParam } from '@nestjs/swagger';
 
 @Injectable()
 export class CandidateService {
