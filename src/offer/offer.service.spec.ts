@@ -1,26 +1,29 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { EnterpriseService } from 'src/enterprise/enterprise.service';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { OfferService } from './offer.service';
 
 describe('OfferService', () => {
-  let service: OfferService;
+  let offerService: OfferService;
+  let enterpriseService: EnterpriseService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [OfferService],
     }).compile();
 
-    service = module.get<OfferService>(OfferService);
+    offerService = module.get<OfferService>(OfferService);
   });
 
   it('Create Offer OK ! Should return CreateOfferDto object', () => {
     expect(
-      service.create({
+      offerService.create({
         description: 'test',
         keyWord: ['1', '2'],
         salary: 1000,
         type: 'CDI',
         status: 'Open',
+        enterprise: 1,
         isForRecruter: true,
       } as CreateOfferDto),
     ).toEqual({
@@ -28,6 +31,7 @@ describe('OfferService', () => {
       keyWord: ['1', '2'],
       salary: 1000,
       type: 'CDI',
+      enterprise: 1,
       status: 'Open',
       isForRecruter: true,
     } as CreateOfferDto);
@@ -35,12 +39,13 @@ describe('OfferService', () => {
 
   it('Create Offer KO with big description! Should return error', () => {
     expect(
-      service.create({
+      offerService.create({
         description: `TROP LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG !`,
         keyWord: ['BEAUCOUP', 'TROP', 'LOOONG'],
         salary: 1,
         type: 'CDprestation',
         status: 'Pourvue',
+        enterprise: 1,
         isForRecruter: false,
       } as CreateOfferDto),
     ).toEqual('The description must be less than 280 characters');

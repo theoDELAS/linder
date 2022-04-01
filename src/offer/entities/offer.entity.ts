@@ -1,9 +1,11 @@
+import { Enterprise } from 'src/enterprise/entities/enterprise.entity';
 import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
   Column,
   Entity,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -28,6 +30,9 @@ export class Offer {
 
   @Column('boolean')
   isForRecruter: boolean;
+
+  @ManyToOne(() => Enterprise, (enterprise) => enterprise.offers)
+  enterprise: Enterprise;
 
   @CreateDateColumn()
   createdAt: Date;
