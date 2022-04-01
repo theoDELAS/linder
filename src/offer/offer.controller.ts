@@ -13,7 +13,7 @@ import { UpdateOfferDto } from './dto/update-offer.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('enterprise')
-@ApiTags('offer')
+@ApiTags('enterprise')
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
 
