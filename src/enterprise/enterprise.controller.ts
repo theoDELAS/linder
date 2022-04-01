@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { EnterpriseService } from './enterprise.service';
 import { CreateEnterpriseDto } from './dto/create-enterprise.dto';
@@ -16,7 +18,14 @@ export class EnterpriseController {
   constructor(private readonly enterpriseService: EnterpriseService) {}
 
   @Post()
-  create(@Body() createEnterpriseDto: CreateEnterpriseDto) {
+  async create(@Body() createEnterpriseDto: CreateEnterpriseDto) {
+    if (
+      (await this.enterpriseService.findBy(createEnterpriseDto.siren)).length >
+      0
+    ) {
+      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+    }
+
     return this.enterpriseService.create(createEnterpriseDto);
   }
 

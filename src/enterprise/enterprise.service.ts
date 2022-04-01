@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpCode, Injectable } from '@nestjs/common';
 import { CreateEnterpriseDto } from './dto/create-enterprise.dto';
 import { UpdateEnterpriseDto } from './dto/update-enterprise.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,13 +12,14 @@ export class EnterpriseService {
     private enterprisesRepository: Repository<Enterprise>,
   ) {}
 
-  create(createEnterpriseDto: CreateEnterpriseDto) {
+  async create(createEnterpriseDto: CreateEnterpriseDto) {
     const enterprise = {
       name: createEnterpriseDto.name,
       siren: createEnterpriseDto.siren,
       description: createEnterpriseDto.description,
       logoUrl: createEnterpriseDto.logoUrl,
     };
+
     this.enterprisesRepository.save(enterprise);
 
     return enterprise;
@@ -30,6 +31,10 @@ export class EnterpriseService {
 
   findOne(id: string): Promise<Enterprise> {
     return this.enterprisesRepository.findOne(id);
+  }
+
+  findBy(sirenNumber: number): Promise<Enterprise[]> {
+    return this.enterprisesRepository.find({ where: { siren: sirenNumber } });
   }
 
   update(id: string, updateEnterpriseDto: UpdateEnterpriseDto) {
